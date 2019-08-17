@@ -1,7 +1,8 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-
     private static final String SEPARATOR_LINE =
             "    ____________________________________________________________";
     private static final String WELCOME_MESSAGE =
@@ -13,6 +14,8 @@ public class Duke {
             SEPARATOR_LINE +
                     "\n     Bye. Hope to see you again soon!\n" +
                     SEPARATOR_LINE + "\n";
+
+    private static List<String> userHistory = new ArrayList<>();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -28,11 +31,20 @@ public class Duke {
             if(userInput.equals("bye")) {
                 break;
             }
-            System.out.println(SEPARATOR_LINE);
-            System.out.println("     " + userInput);
-            System.out.println(SEPARATOR_LINE);
+            if(userInput.equals("list")) {
+                System.out.println(SEPARATOR_LINE);
+                for(int i = 0; i < userHistory.size(); i++) {
+                    System.out.print("     ");
+                    System.out.println(i + 1 + "." + userHistory.get(i));
+                }
+                System.out.println(SEPARATOR_LINE);
+            } else {
+                System.out.println(SEPARATOR_LINE);
+                System.out.println("     added: " + userInput);
+                userHistory.add(userInput);
+                System.out.println(SEPARATOR_LINE);
+            }
         }
-
         System.out.println(BYE_MESSAGE);
     }
 }
