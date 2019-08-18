@@ -1,9 +1,12 @@
+import com.chee.commands.ByeCommand;
+import com.chee.commands.Command;
+import com.chee.error.MissingInformationException;
+import com.chee.error.UnknownCommandException;
+import com.chee.error.UnknownFormatException;
+import com.chee.io.CommandParser;
 import com.chee.io.DukePrinter;
 import com.chee.io.Input;
-import com.chee.model.Deadline;
-import com.chee.model.Event;
 import com.chee.model.Task;
-import com.chee.model.ToDo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,46 +16,31 @@ public class Duke {
     private List<Task> userHistory;
     private DukePrinter dukePrinter;
     private Input input;
+    private CommandParser parser;
 
     public Duke() {
         userHistory = new ArrayList<>();
         dukePrinter = new DukePrinter();
         input = Input.getInstance();
+        parser = new CommandParser(userHistory, dukePrinter);
     }
 
     public void init() {
         dukePrinter.printWelcome();
+        Command command = null;
         while(true) {
             String userInput = input.readInput();
-            if(userInput.equals("bye")) {
-                break;
-            } else if(userInput.equals("list")) {
-                dukePrinter.printList(userHistory);
-            } else if(userInput.startsWith("done")) {
-                int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                userHistory.get(index).setDone(true);
-                dukePrinter.printDone(userHistory.get(index));
-            } else if(userInput.startsWith("todo")) {
-                String description = userInput.split(" ")[1];
-                Task added = new ToDo(description);
-                userHistory.add(added);
-                dukePrinter.printAdd(added, userHistory.size());
-            } else if(userInput.startsWith("deadline")) {
-                String[] split = userInput.split("/by");
-                //Returns the description of task. deadline has 8 characters(with space)
-                String description = split[0].substring(9);
-                Task added = new Deadline(description.trim(), split[1].trim());
-                userHistory.add(added);
-                dukePrinter.printAdd(added, userHistory.size());
-            } else if(userInput.startsWith("event")) {
-                String[] split = userInput.split("/at");
-                String description = split[0].substring(6);
-                Task added = new Event(description.trim(), split[1].trim());
-                userHistory.add(added);
-                dukePrinter.printAdd(added, userHistory.size());
+            try {
+                command = parser.parse(userInput);
+                if(command instanceof ByeCommand) {
+                    command.execute();
+                    break;
+                }
+                command.execute();
+            } catch (MissingInformationException | UnknownCommandException |UnknownFormatException e) {
+                dukePrinter.printError(e.getMessage());
             }
         }
-        dukePrinter.printBye();
         input.close();
     }
 

@@ -75,6 +75,10 @@ public class DukePrinter {
         printWithSeparator(beautify(builder.toString()));
     }
 
+    public void printError(String errorMessage) {
+        printWithSeparator(beautify(errorMessage));
+    }
+
     public static String beautify(String ugly) {
         String[] splitByLine = ugly.split("\n");
         StringBuilder beauty = new StringBuilder();
