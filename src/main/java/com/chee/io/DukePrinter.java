@@ -17,6 +17,10 @@ public class DukePrinter {
             "Here are the tasks in your list:\n";
     private static final String DONE_MESSAGE =
             "Nice! I've marked this task as done:\n";
+    private static final String ADD_MESSAGE =
+            "Got it. I've added this task:\n";
+    private static final String NUMBER_OF_TASK_MESSAGE =
+            "Now you have %d tasks in the list.\n";
     private static final String BYE_MESSAGE =
             SEPARATOR_LINE +
                     "\n     Bye. Hope to see you again soon!\n" +
@@ -62,14 +66,23 @@ public class DukePrinter {
         printWithSeparator(beautify(builder.toString()));
     }
 
+    public void printAdd(Task addedTask, int numOfTasks) {
+        StringBuilder builder = new StringBuilder(ADD_MESSAGE);
+        builder.append("  ");
+        builder.append(addedTask);
+        builder.append("\n");
+        builder.append(String.format(NUMBER_OF_TASK_MESSAGE, numOfTasks));
+        printWithSeparator(beautify(builder.toString()));
+    }
+
     public static String beautify(String ugly) {
         String[] splitByLine = ugly.split("\n");
-        String beauty = "";
+        StringBuilder beauty = new StringBuilder();
         for(String s : splitByLine) {
-            beauty += INDENTATION;
-            beauty += s;
-            beauty += "\n";
+            beauty.append(INDENTATION);
+            beauty.append(s);
+            beauty.append("\n");
         }
-        return beauty;
+        return beauty.toString();
     }
 }

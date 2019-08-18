@@ -1,6 +1,9 @@
 import com.chee.io.DukePrinter;
 import com.chee.io.Input;
+import com.chee.model.Deadline;
+import com.chee.model.Event;
 import com.chee.model.Task;
+import com.chee.model.ToDo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +32,24 @@ public class Duke {
                 int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
                 userHistory.get(index).setDone(true);
                 dukePrinter.printDone(userHistory.get(index));
-            } else {
-                userHistory.add(new Task(userInput));
-                dukePrinter.printWithSeparator(DukePrinter.beautify(userInput));
+            } else if(userInput.startsWith("todo")) {
+                String description = userInput.split(" ")[1];
+                Task added = new ToDo(description);
+                userHistory.add(added);
+                dukePrinter.printAdd(added, userHistory.size());
+            } else if(userInput.startsWith("deadline")) {
+                String[] split = userInput.split("/by");
+                //Returns the description of task. deadline has 8 characters(with space)
+                String description = split[0].substring(9);
+                Task added = new Deadline(description.trim(), split[1].trim());
+                userHistory.add(added);
+                dukePrinter.printAdd(added, userHistory.size());
+            } else if(userInput.startsWith("event")) {
+                String[] split = userInput.split("/at");
+                String description = split[0].substring(6);
+                Task added = new Event(description.trim(), split[1].trim());
+                userHistory.add(added);
+                dukePrinter.printAdd(added, userHistory.size());
             }
         }
         dukePrinter.printBye();
