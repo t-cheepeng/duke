@@ -62,6 +62,12 @@ public class CommandParser {
                         dukePrinter,
                         command.substring(4).trim());
                 break;
+            case "delete":
+                result = new DeleteCommand(
+                        taskList,
+                        Integer.parseInt(splitWhitesapce[1]),
+                        dukePrinter);
+                break;
         }
         return result;
     }

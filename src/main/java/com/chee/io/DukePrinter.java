@@ -21,6 +21,8 @@ public class DukePrinter {
             "Got it. I've added this task:\n";
     private static final String NUMBER_OF_TASK_MESSAGE =
             "Now you have %d tasks in the list.\n";
+    private static final String DELETE_MESSAGE =
+            "Noted. I've removed this task:\n";
     private static final String BYE_MESSAGE =
             SEPARATOR_LINE +
                     "\n     Bye. Hope to see you again soon!\n" +
@@ -72,6 +74,15 @@ public class DukePrinter {
         builder.append(addedTask);
         builder.append("\n");
         builder.append(String.format(NUMBER_OF_TASK_MESSAGE, numOfTasks));
+        printWithSeparator(beautify(builder.toString()));
+    }
+
+    public void printDelete(Task deletedTask, int numOfTask) {
+        StringBuilder builder = new StringBuilder(DELETE_MESSAGE);
+        builder.append("  ");
+        builder.append(deletedTask);
+        builder.append("\n");
+        builder.append(String.format(NUMBER_OF_TASK_MESSAGE, numOfTask));
         printWithSeparator(beautify(builder.toString()));
     }
 

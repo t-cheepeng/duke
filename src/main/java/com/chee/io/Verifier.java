@@ -36,6 +36,9 @@ public class Verifier {
             case "done":
                 checkForDone();
                 break;
+            case "delete":
+                checkForDelete();
+                break;
         }
     }
 
@@ -45,7 +48,8 @@ public class Verifier {
                 firstWord.equals("deadline") ||
                 firstWord.equals("event") ||
                 firstWord.equals("done") ||
-                firstWord.equals("bye");
+                firstWord.equals("bye") ||
+                firstWord.equals("delete");
     }
 
     private void checkForTodo() {
@@ -55,17 +59,12 @@ public class Verifier {
         }
     }
 
+    private void checkForDelete() {
+        checkForSingleNumberCommand();
+    }
+
     private void checkForDone() {
-        if(split.length < 2) {
-            throw new MissingInformationException(
-                    String.format(MISSING_INFO_ERROR_MESSAGE, "number", split[0]));
-        }
-        try {
-            Integer.parseInt(split[1]);
-        } catch(NumberFormatException e) {
-            throw new UnknownFormatException(
-                    String.format(UNKNOWN_FORMAT_MESSAGE, split[0]));
-        }
+        checkForSingleNumberCommand();
     }
 
     private void checkForDeadline() {
@@ -102,4 +101,18 @@ public class Verifier {
                     String.format(MISSING_INFO_ERROR_MESSAGE, infoMissing, split[0]));
         }
     }
+
+    private void checkForSingleNumberCommand() {
+        if(split.length < 2) {
+            throw new MissingInformationException(
+                    String.format(MISSING_INFO_ERROR_MESSAGE, "number", split[0]));
+        }
+        try {
+            Integer.parseInt(split[1]);
+        } catch(NumberFormatException e) {
+            throw new UnknownFormatException(
+                    String.format(UNKNOWN_FORMAT_MESSAGE, split[0]));
+        }
+    }
+
 }
