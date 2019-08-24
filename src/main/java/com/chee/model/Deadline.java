@@ -1,17 +1,22 @@
 package com.chee.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Deadline extends Task {
 
-    private String deadline;
+    private Date deadline;
+    private DateFormat outputFormat = new SimpleDateFormat("dd 'of' MMMMMMMMM yyyy, hh:mm aaa");
 
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, Date deadline) {
         super(description);
         this.deadline = deadline;
     }
 
     public String toString() {
         return "[D]" + "[" + getStatusIcon() + "] " + description
-                + " (by: " + deadline + ")";
+                + " (by: " + outputFormat.format(deadline) + ")";
     }
 
     @Override

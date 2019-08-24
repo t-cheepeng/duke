@@ -9,6 +9,7 @@ import com.chee.io.IOUtils;
 import com.chee.io.Input;
 import com.chee.model.Task;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class Duke {
                 }
                 command.execute();
                 IOUtils.writeTasks(userHistory);
-            } catch (MissingInformationException | UnknownCommandException |UnknownFormatException e) {
+            } catch (MissingInformationException | UnknownCommandException | UnknownFormatException | ParseException e) {
                 dukePrinter.printError(e.getMessage());
             }
         }

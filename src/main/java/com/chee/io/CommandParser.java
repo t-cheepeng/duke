@@ -5,6 +5,9 @@ import com.chee.error.MissingInformationException;
 import com.chee.error.UnknownCommandException;
 import com.chee.model.Task;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CommandParser {
@@ -20,7 +23,7 @@ public class CommandParser {
     }
 
     public Command parse(String command)
-            throws UnknownCommandException, MissingInformationException {
+            throws UnknownCommandException, MissingInformationException, ParseException {
         verifier.verify(command);
         String[] splitWhitesapce = command.split(" ");
         Command result = null;
