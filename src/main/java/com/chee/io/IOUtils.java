@@ -1,12 +1,13 @@
 package com.chee.io;
 
+import com.chee.parser.DataParser;
 import com.chee.model.Task;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,18 @@ public class IOUtils {
     private static final String DUKE_DATA_DIR = System.getProperty("user.home") + File.separator + "data";
     private static final String DUKE_DATA_PATH = DUKE_DATA_DIR + File.separator + "duke.txt";
 
-    public static void writeTasks(List<Task> taskList) {
-        Writer writer = getBufferedWriter();
+    private BufferedReader bufferedReader;
+    private Writer writer;
+
+    public IOUtils() {
+        if(!doesStorageExist()) {
+            createDataStorage();
+        }
+        bufferedReader = getBufferedReader();
+    }
+
+    public void writeTasks(List<Task> taskList) {
+        writer = getBufferedWriter();
         if(writer == null) return;
         try {
             for(Task task : taskList) {
@@ -28,32 +39,39 @@ public class IOUtils {
         }
     }
 
-    public static List<Task> readTasks() {
-        BufferedReader reader = getBufferedReader();
+    public List<Task> readTasks() {
         DataParser dataParser = new DataParser();
         List<Task> storedData = new ArrayList<>();
-        if(reader == null) return storedData;
+        if(bufferedReader == null) return storedData;
         try {
-            String line = reader.readLine();
+            String line = bufferedReader.readLine();
             while(line != null) {
                 Task task = dataParser.parseTask(line);
                 if(task != null) {
                     storedData.add(task);
                 }
-                line = reader.readLine();
+                line = bufferedReader.readLine();
             }
-            reader.close();
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
         return storedData;
     }
 
-    public static boolean doesStorageExist() {
+    public void close() {
+        try {
+            bufferedReader.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static boolean doesStorageExist() {
         return Paths.get(DUKE_DATA_PATH).toFile().exists();
     }
 
-    public static void createDataStorage() {
+    private static void createDataStorage() {
         try {
             Files.createDirectory(Paths.get(DUKE_DATA_DIR));
             Files.createFile(Paths.get(DUKE_DATA_PATH));

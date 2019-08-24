@@ -2,21 +2,22 @@ package com.chee.commands;
 
 import com.chee.io.DukePrinter;
 import com.chee.model.Task;
+import com.chee.model.TaskList;
 
 import java.util.List;
 
 public class ListCommand implements Command {
 
-    private List<Task> taskList;
+    private TaskList taskList;
     private DukePrinter dukePrinter;
 
-    public ListCommand(List<Task> taskList, DukePrinter dukePrinter) {
+    public ListCommand(TaskList taskList, DukePrinter dukePrinter) {
         this.taskList = taskList;
         this.dukePrinter = dukePrinter;
     }
 
     @Override
     public void execute() {
-        dukePrinter.printList(taskList);
+        dukePrinter.printList(taskList.getTaskList());
     }
 }

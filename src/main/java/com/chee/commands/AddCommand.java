@@ -1,10 +1,7 @@
 package com.chee.commands;
 
 import com.chee.io.DukePrinter;
-import com.chee.model.Deadline;
-import com.chee.model.Event;
-import com.chee.model.Task;
-import com.chee.model.ToDo;
+import com.chee.model.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -14,11 +11,11 @@ import java.util.List;
 public class AddCommand implements Command {
 
     private DateFormat dateFormat;
-    private List<Task> taskList;
+    private TaskList taskList;
     private Task taskToAdd;
     private DukePrinter dukePrinter;
 
-    public AddCommand(String commandType, List<Task> taskList,
+    public AddCommand(String commandType, TaskList taskList,
                       DukePrinter dukePrinter, String... extras)
             throws ParseException {
         this.taskList = taskList;

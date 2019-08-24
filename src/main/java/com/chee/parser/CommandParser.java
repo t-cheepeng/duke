@@ -1,22 +1,22 @@
-package com.chee.io;
+package com.chee.parser;
 
 import com.chee.commands.*;
 import com.chee.error.MissingInformationException;
 import com.chee.error.UnknownCommandException;
+import com.chee.io.DukePrinter;
 import com.chee.model.Task;
+import com.chee.model.TaskList;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CommandParser {
 
     private Verifier verifier;
-    private List<Task> taskList;
+    private TaskList taskList;
     private DukePrinter dukePrinter;
 
-    public CommandParser(List<Task> taskList, DukePrinter dukePrinter) {
+    public CommandParser(TaskList taskList, DukePrinter dukePrinter) {
         verifier = new Verifier();
         this.taskList = taskList;
         this.dukePrinter = dukePrinter;

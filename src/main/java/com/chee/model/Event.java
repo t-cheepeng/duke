@@ -7,6 +7,7 @@ import java.util.Date;
 public class Event extends Task {
 
     private Date eventTime;
+    private DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
     private DateFormat outputFormat = new SimpleDateFormat("dd 'of' MMMMMMMMM yyyy, hh:mm aaa");
 
     public Event(String description, Date eventTime) {
@@ -21,6 +22,6 @@ public class Event extends Task {
 
     @Override
     public String getSaveString() {
-        return "E," + isDone + "," + description + "," + eventTime;
+        return "E," + isDone + "," + description + "," + inputFormat.format(eventTime);
     }
 }

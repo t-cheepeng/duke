@@ -1,4 +1,4 @@
-package com.chee.io;
+package com.chee.parser;
 
 import com.chee.error.MissingInformationException;
 import com.chee.error.UnknownCommandException;

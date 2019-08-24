@@ -7,6 +7,7 @@ import java.util.Date;
 public class Deadline extends Task {
 
     private Date deadline;
+    private DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
     private DateFormat outputFormat = new SimpleDateFormat("dd 'of' MMMMMMMMM yyyy, hh:mm aaa");
 
     public Deadline(String description, Date deadline) {
@@ -21,6 +22,6 @@ public class Deadline extends Task {
 
     @Override
     public String getSaveString() {
-        return "D," + isDone + "," + description + "," + deadline;
+        return "D," + isDone + "," + description + "," + inputFormat.format(deadline);
     }
 }
