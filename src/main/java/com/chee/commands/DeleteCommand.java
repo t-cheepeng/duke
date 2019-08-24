@@ -18,6 +18,9 @@ public class DeleteCommand implements Command {
         this.dukePrinter = dukePrinter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() {
         Task removedTask = taskList.remove(toDelete - 1);

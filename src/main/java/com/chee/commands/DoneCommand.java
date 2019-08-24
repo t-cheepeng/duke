@@ -18,6 +18,9 @@ public class DoneCommand implements Command {
         this.dukePrinter = dukePrinter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() {
         taskList.get(taskNum - 1).setDone(true);

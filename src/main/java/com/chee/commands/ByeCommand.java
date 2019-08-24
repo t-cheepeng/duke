@@ -10,6 +10,9 @@ public class ByeCommand implements Command {
         this.dukePrinter = dukePrinter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() {
         dukePrinter.printBye();

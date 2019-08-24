@@ -16,6 +16,9 @@ public class ListCommand implements Command {
         this.dukePrinter = dukePrinter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() {
         dukePrinter.printList(taskList.getTaskList());

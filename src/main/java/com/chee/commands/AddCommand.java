@@ -35,6 +35,9 @@ public class AddCommand implements Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() {
         taskList.add(taskToAdd);
