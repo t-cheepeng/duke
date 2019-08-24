@@ -7,7 +7,7 @@ public class Input {
     private static Scanner scanner;
 
     private Input() {
-        if(scanner == null) {
+        if (scanner == null) {
             scanner = new Scanner(System.in);
         }
     }

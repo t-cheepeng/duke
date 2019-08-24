@@ -15,6 +15,14 @@ public class AddCommand implements Command {
     private Task taskToAdd;
     private DukePrinter dukePrinter;
 
+    /**
+     * Adds a task to the task list.
+     * @param commandType Type of command
+     * @param taskList The list to ask task to
+     * @param dukePrinter User output
+     * @param extras Extra information pertaining to the command
+     * @throws ParseException If {@code extras} are not parceable.
+     */
     public AddCommand(String commandType, TaskList taskList,
                       DukePrinter dukePrinter, String... extras)
             throws ParseException {
@@ -22,7 +30,7 @@ public class AddCommand implements Command {
         this.dukePrinter = dukePrinter;
         this.dateFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
 
-        switch(commandType) {
+        switch (commandType) {
             case "todo":
                 taskToAdd = new ToDo(extras[0]);
                 break;
@@ -31,6 +39,8 @@ public class AddCommand implements Command {
                 break;
             case "event":
                 taskToAdd = new Event(extras[0], dateFormat.parse(extras[1]));
+                break;
+            default:
                 break;
         }
     }

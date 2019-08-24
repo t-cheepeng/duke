@@ -9,10 +9,11 @@ public class DukePrinter {
     private static final String SEPARATOR_LINE =
             "    ____________________________________________________________";
     private static final String WELCOME_MESSAGE =
-            SEPARATOR_LINE +
-                    "\n     Hello! I'm Duke\n" +
-                    "     What can I do for you?\n" +
-                    SEPARATOR_LINE + "\n";
+            SEPARATOR_LINE
+                    + "\n     Hello! I'm Duke\n"
+                    + "     What can I do for you?\n"
+                    + SEPARATOR_LINE
+                    + "\n";
     private static final String LIST_MESSAGE =
             "Here are the tasks in your list:\n";
     private static final String DONE_MESSAGE =
@@ -24,9 +25,10 @@ public class DukePrinter {
     private static final String DELETE_MESSAGE =
             "Noted. I've removed this task:\n";
     private static final String BYE_MESSAGE =
-            SEPARATOR_LINE +
-                    "\n     Bye. Hope to see you again soon!\n" +
-                    SEPARATOR_LINE + "\n";
+            SEPARATOR_LINE
+                    + "\n     Bye. Hope to see you again soon!\n"
+                    + SEPARATOR_LINE
+                    + "\n";
     private static final String DUKE_MESSAGE =
             " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -51,7 +53,7 @@ public class DukePrinter {
 
     public void printList(List<Task> items) {
         StringBuilder message = new StringBuilder(LIST_MESSAGE);
-        for(int i = 0; i < items.size(); i++) {
+        for (int i = 0; i < items.size(); i++) {
             Task task = items.get(i);
             message.append(i + 1);
             message.append(".");
@@ -93,7 +95,7 @@ public class DukePrinter {
     public static String beautify(String ugly) {
         String[] splitByLine = ugly.split("\n");
         StringBuilder beauty = new StringBuilder();
-        for(String s : splitByLine) {
+        for (String s : splitByLine) {
             beauty.append(INDENTATION);
             beauty.append(s);
             beauty.append("\n");

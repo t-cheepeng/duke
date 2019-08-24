@@ -4,11 +4,9 @@ import com.chee.commands.*;
 import com.chee.error.MissingInformationException;
 import com.chee.error.UnknownCommandException;
 import com.chee.io.DukePrinter;
-import com.chee.model.Task;
 import com.chee.model.TaskList;
 
 import java.text.ParseException;
-import java.util.List;
 
 /**
  * Parses String commands into actual {@code Command} objects.
@@ -57,7 +55,7 @@ public class CommandParser {
         verifier.verify(command);
         String[] splitWhitesapce = command.split(" ");
         Command result = null;
-        switch(splitWhitesapce[0]) {
+        switch (splitWhitesapce[0]) {
             case "bye":
                 result = new ByeCommand(dukePrinter);
                 break;
@@ -100,6 +98,8 @@ public class CommandParser {
                         taskList,
                         Integer.parseInt(splitWhitesapce[1]),
                         dukePrinter);
+                break;
+            default:
                 break;
         }
         return result;

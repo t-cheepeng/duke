@@ -6,12 +6,10 @@ import com.chee.error.UnknownFormatException;
 import com.chee.model.TaskList;
 import com.chee.parser.CommandParser;
 import com.chee.io.DukePrinter;
-import com.chee.io.IOUtils;
+import com.chee.io.IoUtils;
 import com.chee.io.Input;
-import com.chee.model.Task;
 
 import java.text.ParseException;
-import java.util.List;
 
 public class Duke {
 
@@ -19,30 +17,37 @@ public class Duke {
     private DukePrinter dukePrinter;
     private Input input;
     private CommandParser parser;
-    private IOUtils io;
+    private IoUtils io;
 
+    /**
+     * Creates the interactive chatbot Duke.
+     */
     public Duke() {
-        io = new IOUtils();
+        io = new IoUtils();
         userHistory = new TaskList(io.readTasks());
         dukePrinter = new DukePrinter();
         input = Input.getInstance();
         parser = new CommandParser(userHistory, dukePrinter);
     }
 
+    /**
+     * Initialises and starts up Duke to accept inputs from user.
+     */
     public void init() {
         dukePrinter.printWelcome();
         Command command = null;
-        while(true) {
+        while (true) {
             String userInput = input.readInput();
             try {
                 command = parser.parse(userInput);
-                if(command instanceof ByeCommand) {
+                if (command instanceof ByeCommand) {
                     command.execute();
                     break;
                 }
                 command.execute();
                 io.writeTasks(userHistory.getTaskList());
-            } catch (MissingInformationException | UnknownCommandException | UnknownFormatException | ParseException e) {
+            } catch (MissingInformationException | UnknownCommandException
+                    | UnknownFormatException | ParseException e) {
                 dukePrinter.printError(e.getMessage());
             }
         }

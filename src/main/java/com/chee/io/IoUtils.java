@@ -11,7 +11,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IOUtils {
+public class IoUtils {
 
     private static final String DUKE_DATA_DIR = System.getProperty("user.home") + File.separator + "data";
     private static final String DUKE_DATA_PATH = DUKE_DATA_DIR + File.separator + "duke.txt";
@@ -19,8 +19,8 @@ public class IOUtils {
     private BufferedReader bufferedReader;
     private Writer writer;
 
-    public IOUtils() {
-        if(!doesStorageExist()) {
+    public IoUtils() {
+        if (!doesStorageExist()) {
             createDataStorage();
         }
         bufferedReader = getBufferedReader();
@@ -28,7 +28,9 @@ public class IOUtils {
 
     public void writeTasks(List<Task> taskList) {
         writer = getBufferedWriter();
-        if(writer == null) return;
+        if (writer == null) {
+            return;
+        }
         try {
             for(Task task : taskList) {
                 writer.write(task.getSaveString() + "\n");
@@ -42,12 +44,14 @@ public class IOUtils {
     public List<Task> readTasks() {
         DataParser dataParser = new DataParser();
         List<Task> storedData = new ArrayList<>();
-        if(bufferedReader == null) return storedData;
+        if (bufferedReader == null) {
+            return storedData;
+        }
         try {
             String line = bufferedReader.readLine();
-            while(line != null) {
+            while (line != null) {
                 Task task = dataParser.parseTask(line);
-                if(task != null) {
+                if (task != null) {
                     storedData.add(task);
                 }
                 line = bufferedReader.readLine();
