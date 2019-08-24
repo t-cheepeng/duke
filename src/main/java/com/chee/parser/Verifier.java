@@ -44,6 +44,9 @@ public class Verifier {
             case "delete":
                 checkForDelete();
                 break;
+            case "find":
+                checkForFind();
+                break;
             default:
                 break;
         }
@@ -56,7 +59,8 @@ public class Verifier {
                 || firstWord.equals("event")
                 || firstWord.equals("done")
                 || firstWord.equals("bye")
-                || firstWord.equals("delete");
+                || firstWord.equals("delete")
+                || firstWord.equals("find");
     }
 
     private void checkForTodo() {
@@ -111,6 +115,13 @@ public class Verifier {
         } catch (ParseException e) {
             throw new UnknownFormatException(
                     String.format(UNKNOWN_FORMAT_MESSAGE, "date"));
+        }
+    }
+
+    private void checkForFind() {
+        if(split.length < 2) {
+            throw new MissingInformationException(
+                    String.format(MISSING_INFO_ERROR_MESSAGE, "search space", split[0]));
         }
     }
 
