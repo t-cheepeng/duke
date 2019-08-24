@@ -13,4 +13,9 @@ public class Event extends Task {
         return "[E]" + "[" + getStatusIcon() + "] " + description
                 + " (at: " + eventTime + ")";
     }
+
+    @Override
+    public String getSaveString() {
+        return "E," + isDone + "," + description + "," + eventTime;
+    }
 }

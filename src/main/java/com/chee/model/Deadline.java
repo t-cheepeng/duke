@@ -13,4 +13,9 @@ public class Deadline extends Task {
         return "[D]" + "[" + getStatusIcon() + "] " + description
                 + " (by: " + deadline + ")";
     }
+
+    @Override
+    public String getSaveString() {
+        return "D," + isDone + "," + description + "," + deadline;
+    }
 }

@@ -5,6 +5,7 @@ import com.chee.error.UnknownCommandException;
 import com.chee.error.UnknownFormatException;
 import com.chee.io.CommandParser;
 import com.chee.io.DukePrinter;
+import com.chee.io.IOUtils;
 import com.chee.io.Input;
 import com.chee.model.Task;
 
@@ -19,7 +20,10 @@ public class Duke {
     private CommandParser parser;
 
     public Duke() {
-        userHistory = new ArrayList<>();
+        if(!IOUtils.doesStorageExist()) {
+            IOUtils.createDataStorage();
+        }
+        userHistory = IOUtils.readTasks();
         dukePrinter = new DukePrinter();
         input = Input.getInstance();
         parser = new CommandParser(userHistory, dukePrinter);
@@ -37,6 +41,7 @@ public class Duke {
                     break;
                 }
                 command.execute();
+                IOUtils.writeTasks(userHistory);
             } catch (MissingInformationException | UnknownCommandException |UnknownFormatException e) {
                 dukePrinter.printError(e.getMessage());
             }
