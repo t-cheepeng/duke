@@ -25,7 +25,7 @@ public class Verifier {
             throws UnknownCommandException, MissingInformationException {
         this.command = command;
         split = command.split(" ");
-        if(!isKnownCommand(split[0])) {
+        if (!isKnownCommand(split[0])) {
             throw new UnknownCommandException(UNKNOWN_COMMAND_ERROR_MESSAGE);
         }
         switch(split[0]) {
@@ -44,21 +44,23 @@ public class Verifier {
             case "delete":
                 checkForDelete();
                 break;
+            default:
+                break;
         }
     }
 
     private boolean isKnownCommand(String firstWord) {
-        return firstWord.equals("todo") ||
-                firstWord.equals("list") ||
-                firstWord.equals("deadline") ||
-                firstWord.equals("event") ||
-                firstWord.equals("done") ||
-                firstWord.equals("bye") ||
-                firstWord.equals("delete");
+        return firstWord.equals("todo")
+                || firstWord.equals("list")
+                || firstWord.equals("deadline")
+                || firstWord.equals("event")
+                || firstWord.equals("done")
+                || firstWord.equals("bye")
+                || firstWord.equals("delete");
     }
 
     private void checkForTodo() {
-        if(split.length < 2) {
+        if (split.length < 2) {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, "description", split[0]));
         }
@@ -75,13 +77,13 @@ public class Verifier {
     private void checkForDeadline() {
         checkForFlagExistence("by", "/by");
         String[] splitByFlag = command.split("/by");
-        if(splitByFlag.length < 2 || splitByFlag[1].trim().equals("")) {
+        if (splitByFlag.length < 2 || splitByFlag[1].trim().equals("")) {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, "by", split[0]));
         }
         //deadline is 8 characters long. If no string exists after deleting deadline,
         //the description is missing
-        if(splitByFlag[0].substring(8).trim().equals("")) {
+        if (splitByFlag[0].substring(8).trim().equals("")) {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, "description", split[0]));
         }
@@ -96,11 +98,11 @@ public class Verifier {
     private void checkForEvent() {
         checkForFlagExistence("at", "/at");
         String[] splitByFlag = command.split("/at");
-        if(splitByFlag.length < 2 || splitByFlag[1].trim().equals("")) {
+        if (splitByFlag.length < 2 || splitByFlag[1].trim().equals("")) {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, "at", split[0]));
         }
-        if(splitByFlag[0].substring(5).trim().equals("")) {
+        if (splitByFlag[0].substring(5).trim().equals("")) {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, "description", split[0]));
         }
@@ -113,20 +115,20 @@ public class Verifier {
     }
 
     private void checkForFlagExistence(String infoMissing, String flag) {
-        if(!command.contains(flag)) {
+        if (!command.contains(flag)) {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, infoMissing, split[0]));
         }
     }
 
     private void checkForSingleNumberCommand() {
-        if(split.length < 2) {
+        if (split.length < 2) {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, "number", split[0]));
         }
         try {
             Integer.parseInt(split[1]);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new UnknownFormatException(
                     String.format(UNKNOWN_FORMAT_MESSAGE, split[0]));
         }

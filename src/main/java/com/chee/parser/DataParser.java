@@ -16,7 +16,7 @@ public class DataParser {
     public Task parseTask(String line) throws ParseException {
         String[] splitByCommas = line.split(",");
         Task parsed = null;
-        switch(splitByCommas[0]) {
+        switch (splitByCommas[0]) {
             case "E":
                 parsed = new Event(splitByCommas[2], inputFormat.parse(splitByCommas[3]));
                 parsed.setDone(Boolean.parseBoolean(splitByCommas[1]));
@@ -28,6 +28,8 @@ public class DataParser {
             case "T":
                 parsed = new ToDo(splitByCommas[2]);
                 parsed.setDone(Boolean.parseBoolean(splitByCommas[1]));
+                break;
+            default:
                 break;
         }
         return parsed;
