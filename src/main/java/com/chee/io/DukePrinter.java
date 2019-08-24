@@ -23,6 +23,8 @@ public class DukePrinter {
             "Now you have %d tasks in the list.\n";
     private static final String DELETE_MESSAGE =
             "Noted. I've removed this task:\n";
+    private static final String FIND_MESSAGE =
+            "Here are the matching tasks in your list:\n";
     private static final String BYE_MESSAGE =
             SEPARATOR_LINE +
                     "\n     Bye. Hope to see you again soon!\n" +
@@ -51,13 +53,7 @@ public class DukePrinter {
 
     public void printList(List<Task> items) {
         StringBuilder message = new StringBuilder(LIST_MESSAGE);
-        for(int i = 0; i < items.size(); i++) {
-            Task task = items.get(i);
-            message.append(i + 1);
-            message.append(".");
-            message.append(task);
-            message.append("\n");
-        }
+        buildTaskListMessage(items, message);
         printWithSeparator(beautify(message.toString()));
     }
 
@@ -90,6 +86,12 @@ public class DukePrinter {
         printWithSeparator(beautify(errorMessage));
     }
 
+    public void printFind(List<Task> found) {
+        StringBuilder builder = new StringBuilder(FIND_MESSAGE);
+        buildTaskListMessage(found, builder);
+        printWithSeparator(beautify(builder.toString()));
+    }
+
     public static String beautify(String ugly) {
         String[] splitByLine = ugly.split("\n");
         StringBuilder beauty = new StringBuilder();
@@ -99,5 +101,15 @@ public class DukePrinter {
             beauty.append("\n");
         }
         return beauty.toString();
+    }
+
+    private void buildTaskListMessage(List<Task> items, StringBuilder message) {
+        for(int i = 0; i < items.size(); i++) {
+            Task task = items.get(i);
+            message.append(i + 1);
+            message.append(".");
+            message.append(task);
+            message.append("\n");
+        }
     }
 }

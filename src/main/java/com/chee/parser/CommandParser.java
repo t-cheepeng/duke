@@ -71,6 +71,12 @@ public class CommandParser {
                         Integer.parseInt(splitWhitesapce[1]),
                         dukePrinter);
                 break;
+            case "find":
+                result = new FindCommand(
+                        command.substring(5),
+                        taskList,
+                        dukePrinter);
+                break;
         }
         return result;
     }
