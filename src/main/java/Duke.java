@@ -8,6 +8,7 @@ import com.chee.io.DukePrinter;
 import com.chee.io.Input;
 import com.chee.model.Task;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class Duke {
                     break;
                 }
                 command.execute();
-            } catch (MissingInformationException | UnknownCommandException |UnknownFormatException e) {
+            } catch (MissingInformationException | UnknownCommandException | UnknownFormatException | ParseException e) {
                 dukePrinter.printError(e.getMessage());
             }
         }

@@ -4,6 +4,10 @@ import com.chee.error.MissingInformationException;
 import com.chee.error.UnknownCommandException;
 import com.chee.error.UnknownFormatException;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class Verifier {
 
     private static final String MISSING_INFO_ERROR_MESSAGE =
@@ -15,6 +19,7 @@ public class Verifier {
 
     private String[] split;
     private String command;
+    private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
 
     public void verify(String command)
             throws UnknownCommandException, MissingInformationException {
@@ -80,6 +85,12 @@ public class Verifier {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, "description", split[0]));
         }
+        try {
+            dateFormat.parse(splitByFlag[1].trim());
+        } catch (ParseException e) {
+            throw new UnknownFormatException(
+                    String.format(UNKNOWN_FORMAT_MESSAGE, "date"));
+        }
     }
 
     private void checkForEvent() {
@@ -92,6 +103,12 @@ public class Verifier {
         if(splitByFlag[0].substring(5).trim().equals("")) {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, "description", split[0]));
+        }
+        try {
+            dateFormat.parse(splitByFlag[1].trim());
+        } catch (ParseException e) {
+            throw new UnknownFormatException(
+                    String.format(UNKNOWN_FORMAT_MESSAGE, "date"));
         }
     }
 
