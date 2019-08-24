@@ -6,6 +6,11 @@ public class ToDo extends Task {
         super(description);
     }
 
+    @Override
+    public String getSaveString() {
+        return "T," + isDone + "," + description;
+    }
+
     public String toString() {
         return "[T]" + "[" + getStatusIcon() + "] " + description;
     }
