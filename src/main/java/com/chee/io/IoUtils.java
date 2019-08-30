@@ -1,5 +1,6 @@
 package com.chee.io;
 
+import com.chee.error.CorruptDataException;
 import com.chee.parser.DataParser;
 import com.chee.model.Task;
 
@@ -18,6 +19,7 @@ public class IoUtils {
 
     private static final String DUKE_DATA_DIR = System.getProperty("user.home") + File.separator + "data";
     private static final String DUKE_DATA_PATH = DUKE_DATA_DIR + File.separator + "duke.txt";
+    private static final String CORRUPT_DATA_MESSAGE = "uWu, your data seems to be corruped and is not readable";
 
     private BufferedReader bufferedReader;
     private Writer writer;
@@ -55,7 +57,7 @@ public class IoUtils {
      * Reads a list of task from user's storage.
      * @return The list of tasks read from storage
      */
-    public List<Task> readTasks() {
+    public List<Task> readTasks() throws CorruptDataException {
         DataParser dataParser = new DataParser();
         List<Task> storedData = new ArrayList<>();
         if (bufferedReader == null) {
@@ -70,8 +72,10 @@ public class IoUtils {
                 }
                 line = bufferedReader.readLine();
             }
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             e.printStackTrace();
+        } catch (ParseException e) {
+            throw new CorruptDataException(CORRUPT_DATA_MESSAGE);
         }
         return storedData;
     }

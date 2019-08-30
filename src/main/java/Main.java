@@ -8,16 +8,17 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private Duke duke = new Duke();
+    private Duke duke;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             primaryStage.setScene(scene);
             MainWindow window = fxmlLoader.<MainWindow>getController();
+            duke = new Duke();
             window.setDuke(duke);
             window.welcome();
             primaryStage.show();
