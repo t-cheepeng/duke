@@ -7,7 +7,7 @@ import java.util.List;
 public class DukePrinter {
     private static final String INDENTATION = "     ";
     private static final String SEPARATOR_LINE =
-            "    ____________________________________________________________";
+            "    ______________________________________________________";
     private static final String WELCOME_MESSAGE =
             SEPARATOR_LINE
                     + "\n     Hello! I'm Duke\n"
@@ -38,19 +38,22 @@ public class DukePrinter {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
+    private String latestPrintedMessage = "";
+
     public void printWelcome() {
-        System.out.println("Hello from\n" + DUKE_MESSAGE);
-        System.out.println(WELCOME_MESSAGE);
+        latestPrintedMessage += WELCOME_MESSAGE + "\n";
     }
 
     public void printBye() {
-        System.out.println(BYE_MESSAGE);
+        latestPrintedMessage = BYE_MESSAGE;
+        latestPrintedMessage += "\n";
     }
 
     public void printWithSeparator(String message) {
-        System.out.println(SEPARATOR_LINE);
-        System.out.print(message);
-        System.out.println(SEPARATOR_LINE);
+        latestPrintedMessage = SEPARATOR_LINE + "\n";
+        latestPrintedMessage += message;
+        latestPrintedMessage += SEPARATOR_LINE + "\n";
+
     }
 
     public void printList(List<Task> items) {
@@ -94,7 +97,11 @@ public class DukePrinter {
         printWithSeparator(beautify(builder.toString()));
     }
 
-    public static String beautify(String ugly) {
+    public String getLatestCommandResponse() {
+        return latestPrintedMessage;
+    }
+
+    private static String beautify(String ugly) {
         String[] splitByLine = ugly.split("\n");
         StringBuilder beauty = new StringBuilder();
         for (String s : splitByLine) {

@@ -10,6 +10,7 @@ import com.chee.io.IoUtils;
 import com.chee.io.Input;
 
 import java.text.ParseException;
+import java.util.NoSuchElementException;
 
 public class Duke {
 
@@ -30,33 +31,24 @@ public class Duke {
         parser = new CommandParser(userHistory, dukePrinter);
     }
 
-    /**
-     * Initialises and starts up Duke to accept inputs from user.
-     */
-    public void init() {
-        dukePrinter.printWelcome();
+    public String getResponse(String input) {
         Command command = null;
-        while (true) {
-            String userInput = input.readInput();
-            try {
-                command = parser.parse(userInput);
-                if (command instanceof ByeCommand) {
-                    command.execute();
-                    break;
-                }
+        try {
+            command = parser.parse(input);
+            if (command instanceof ByeCommand) {
                 command.execute();
-                io.writeTasks(userHistory.getTaskList());
-            } catch (MissingInformationException | UnknownCommandException
-                    | UnknownFormatException | ParseException e) {
-                dukePrinter.printError(e.getMessage());
             }
+            command.execute();
+            io.writeTasks(userHistory.getTaskList());
+        } catch (MissingInformationException | UnknownCommandException
+                | UnknownFormatException | ParseException | NoSuchElementException e) {
+            dukePrinter.printError(e.getMessage());
         }
-        input.close();
-        io.close();
+        return dukePrinter.getLatestCommandResponse();
     }
 
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.init();
+    public String welcomeUser() {
+        dukePrinter.printWelcome();
+        return dukePrinter.getLatestCommandResponse();
     }
 }
