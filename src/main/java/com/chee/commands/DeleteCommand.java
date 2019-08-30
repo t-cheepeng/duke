@@ -4,14 +4,19 @@ import com.chee.io.DukePrinter;
 import com.chee.model.Task;
 import com.chee.model.TaskList;
 
-import java.util.List;
-
 public class DeleteCommand implements Command {
 
     private TaskList taskList;
     private DukePrinter dukePrinter;
     private int toDelete;
 
+    /**
+     * Makes a command representing a Delete action.
+     *
+     * @param taskList    The user's list of task
+     * @param toDelete    The index of the task to delete
+     * @param dukePrinter The response duke gives
+     */
     public DeleteCommand(TaskList taskList, int toDelete, DukePrinter dukePrinter) {
         this.taskList = taskList;
         this.toDelete = toDelete;

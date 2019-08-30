@@ -1,16 +1,21 @@
 package com.chee.commands;
 
 import com.chee.io.DukePrinter;
-import com.chee.model.Task;
 import com.chee.model.TaskList;
-
-import java.util.List;
 
 public class DoneCommand implements Command {
 
     private TaskList taskList;
     private int taskNum;
     private DukePrinter dukePrinter;
+
+    /**
+     * Makes a command representing a done action.
+     *
+     * @param taskList    The user's list of task
+     * @param taskNum     The index of the task to set to done
+     * @param dukePrinter The response duke gives
+     */
 
     public DoneCommand(TaskList taskList, int taskNum, DukePrinter dukePrinter) {
         this.taskList = taskList;

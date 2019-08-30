@@ -13,6 +13,13 @@ public class FindCommand implements Command {
     private TaskList taskList;
     private DukePrinter dukePrinter;
 
+    /**
+     * Makes a command representing a find action.
+     *
+     * @param searchTerm  The user's search term
+     * @param taskList    The user's list of task
+     * @param dukePrinter The response duke gives
+     */
     public FindCommand(String searchTerm, TaskList taskList,
         DukePrinter dukePrinter) {
         this.searchTerm = searchTerm;

@@ -49,6 +49,10 @@ public class DukePrinter {
         latestPrintedMessage += "\n";
     }
 
+    /**
+     * Prints a general message with separator lines encasing message.
+     * @param message The message to print
+     */
     public void printWithSeparator(String message) {
         latestPrintedMessage = SEPARATOR_LINE + "\n";
         latestPrintedMessage += message;
@@ -56,12 +60,20 @@ public class DukePrinter {
 
     }
 
+    /**
+     * Prints a list of tasks with separator lines.
+     * @param items The list of tasks to print
+     */
     public void printList(List<Task> items) {
         StringBuilder message = new StringBuilder(LIST_MESSAGE);
         buildTaskListMessage(items, message);
         printWithSeparator(beautify(message.toString()));
     }
 
+    /**
+     * Prints duke's response to a valid done action.
+     * @param doneItem The item that was marked as done
+     */
     public void printDone(Task doneItem) {
         StringBuilder builder = new StringBuilder(DONE_MESSAGE);
         builder.append("  ");
@@ -69,6 +81,11 @@ public class DukePrinter {
         printWithSeparator(beautify(builder.toString()));
     }
 
+    /**
+     * Prints duke's response to a valid add action.
+     * @param addedTask The task added to the list
+     * @param numOfTasks The number of tasks in the list
+     */
     public void printAdd(Task addedTask, int numOfTasks) {
         StringBuilder builder = new StringBuilder(ADD_MESSAGE);
         builder.append("  ");
@@ -78,6 +95,11 @@ public class DukePrinter {
         printWithSeparator(beautify(builder.toString()));
     }
 
+    /**
+     * Prints duke's response to a a valid delete action.
+     * @param deletedTask The task deleted from the list
+     * @param numOfTask The number of tasks remaining in the list
+     */
     public void printDelete(Task deletedTask, int numOfTask) {
         StringBuilder builder = new StringBuilder(DELETE_MESSAGE);
         builder.append("  ");
@@ -87,16 +109,28 @@ public class DukePrinter {
         printWithSeparator(beautify(builder.toString()));
     }
 
+    /**
+     * Prints an error message to the user.
+     * @param errorMessage The error message
+     */
     public void printError(String errorMessage) {
         printWithSeparator(beautify(errorMessage));
     }
 
+    /**
+     * Prints duke's response to a valid find action.
+     * @param found The list of tasks matching user's search term
+     */
     public void printFind(List<Task> found) {
         StringBuilder builder = new StringBuilder(FIND_MESSAGE);
         buildTaskListMessage(found, builder);
         printWithSeparator(beautify(builder.toString()));
     }
 
+    /**
+     * Retrieves the latest response duke had to the user.
+     * @return Latest response duke had to the user.
+     */
     public String getLatestCommandResponse() {
         return latestPrintedMessage;
     }
@@ -113,7 +147,7 @@ public class DukePrinter {
     }
 
     private void buildTaskListMessage(List<Task> items, StringBuilder message) {
-        for(int i = 0; i < items.size(); i++) {
+        for (int i = 0; i < items.size(); i++) {
             Task task = items.get(i);
             message.append(i + 1);
             message.append(".");

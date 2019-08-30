@@ -1,12 +1,15 @@
 package com.chee.commands;
 
 import com.chee.io.DukePrinter;
-import com.chee.model.*;
+import com.chee.model.Task;
+import com.chee.model.TaskList;
+import com.chee.model.Deadline;
+import com.chee.model.ToDo;
+import com.chee.model.Event;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class AddCommand implements Command {
 
@@ -17,10 +20,11 @@ public class AddCommand implements Command {
 
     /**
      * Adds a task to the task list.
+     *
      * @param commandType Type of command
-     * @param taskList The list to ask task to
+     * @param taskList    The list to ask task to
      * @param dukePrinter User output
-     * @param extras Extra information pertaining to the command
+     * @param extras      Extra information pertaining to the command
      * @throws ParseException If {@code extras} are not parceable.
      */
     public AddCommand(String commandType, TaskList taskList,
@@ -31,17 +35,17 @@ public class AddCommand implements Command {
         this.dateFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
 
         switch (commandType) {
-            case "todo":
-                taskToAdd = new ToDo(extras[0]);
-                break;
-            case "deadline":
-                taskToAdd = new Deadline(extras[0], dateFormat.parse(extras[1]));
-                break;
-            case "event":
-                taskToAdd = new Event(extras[0], dateFormat.parse(extras[1]));
-                break;
-            default:
-                break;
+        case "todo":
+            taskToAdd = new ToDo(extras[0]);
+            break;
+        case "deadline":
+            taskToAdd = new Deadline(extras[0], dateFormat.parse(extras[1]));
+            break;
+        case "event":
+            taskToAdd = new Event(extras[0], dateFormat.parse(extras[1]));
+            break;
+        default:
+            break;
         }
     }
 

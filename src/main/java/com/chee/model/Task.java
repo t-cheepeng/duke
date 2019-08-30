@@ -3,14 +3,14 @@ package com.chee.model;
 /**
  * Encapsulates a task inside Duke's system.
  * <p>
- *     This class represents a task that Duke understands
- *     and is mainly for extension purposes to make more
- *     specific types of tasks that have their own
- *     unique attributes and methods.
+ * This class represents a task that Duke understands
+ * and is mainly for extension purposes to make more
+ * specific types of tasks that have their own
+ * unique attributes and methods.
  *
  * </p>
  *
- * @see ToDo, Event, Deadline
+ * @see ToDo Event Deadline
  */
 public abstract class Task {
     String description;
@@ -38,18 +38,19 @@ public abstract class Task {
     }
 
     String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718");
+        return (isDone ? "✓" : "✗");
     }
 
     /**
      * Returns a string in format that is to be saved locally.
      *
      * <p>
-     *     Classes overriding this method are expected
-     *     to partition their data using , as in a
-     *     CSV file for storage into local hard
-     *     disk purposes.
+     * Classes overriding this method are expected
+     * to partition their data using , as in a
+     * CSV file for storage into local hard
+     * disk purposes.
      * </p>
+     *
      * @return Comma separated values of attributes in the class
      */
     public abstract String getSaveString();

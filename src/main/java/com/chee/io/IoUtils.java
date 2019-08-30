@@ -3,7 +3,10 @@ package com.chee.io;
 import com.chee.parser.DataParser;
 import com.chee.model.Task;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,6 +22,9 @@ public class IoUtils {
     private BufferedReader bufferedReader;
     private Writer writer;
 
+    /**
+     * Represents IO operations for Duke.
+     */
     public IoUtils() {
         if (!doesStorageExist()) {
             createDataStorage();
@@ -26,13 +32,17 @@ public class IoUtils {
         bufferedReader = getBufferedReader();
     }
 
+    /**
+     * Writes a list of task to user's storage.
+     * @param taskList The list of task to save
+     */
     public void writeTasks(List<Task> taskList) {
         writer = getBufferedWriter();
         if (writer == null) {
             return;
         }
         try {
-            for(Task task : taskList) {
+            for (Task task : taskList) {
                 writer.write(task.getSaveString() + "\n");
             }
             writer.close();
@@ -41,6 +51,10 @@ public class IoUtils {
         }
     }
 
+    /**
+     * Reads a list of task from user's storage.
+     * @return The list of tasks read from storage
+     */
     public List<Task> readTasks() {
         DataParser dataParser = new DataParser();
         List<Task> storedData = new ArrayList<>();
@@ -62,6 +76,9 @@ public class IoUtils {
         return storedData;
     }
 
+    /**
+     * Closes all underlying IO streams.
+     */
     public void close() {
         try {
             bufferedReader.close();

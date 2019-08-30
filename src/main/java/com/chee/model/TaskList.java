@@ -22,7 +22,9 @@ public class TaskList {
         return taskList.size();
     }
 
-    public Task get(int index) { return taskList.get(index); }
+    public Task get(int index) {
+        return taskList.get(index);
+    }
 
     public List<Task> getTaskList() {
         return taskList;

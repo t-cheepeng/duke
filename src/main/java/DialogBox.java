@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,6 +44,12 @@ public class DialogBox extends HBox {
         return new DialogBox(l, iv);
     }
 
+    /**
+     * Gets a dialog box for Duke.
+     * @param l The text duke replies user with
+     * @param iv The image of duke
+     * @return a dialog box representing duke's reply.
+     */
     public static DialogBox getDukeDialog(String l, Image iv) {
         var db = new DialogBox(l, iv);
         db.flip();

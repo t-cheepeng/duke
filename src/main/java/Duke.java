@@ -31,6 +31,11 @@ public class Duke {
         parser = new CommandParser(userHistory, dukePrinter);
     }
 
+    /**
+     * Gets duke's response to a user's input.
+     * @param input The user's input
+     * @return Duke's response as a string
+     */
     public String getResponse(String input) {
         Command command = null;
         try {
