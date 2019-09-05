@@ -1,6 +1,6 @@
-package com.chee.commands;
+package duke.commands;
 
-import com.chee.io.DukePrinter;
+import duke.io.DukePrinter;
 
 public class ByeCommand implements Command {
 

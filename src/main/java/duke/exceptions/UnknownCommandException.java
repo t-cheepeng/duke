@@ -1,4 +1,4 @@
-package com.chee.error;
+package duke.exceptions;
 
 public class UnknownCommandException extends RuntimeException {
     

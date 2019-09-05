@@ -1,4 +1,4 @@
-package com.chee.commands;
+package duke.commands;
 
 /**
  * Represents a action that Duke can take; a command to Duke.

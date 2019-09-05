@@ -1,10 +1,7 @@
-package com.chee.commands;
+package duke.commands;
 
-import com.chee.io.DukePrinter;
-import com.chee.model.Task;
-import com.chee.model.TaskList;
-
-import java.util.List;
+import duke.io.DukePrinter;
+import duke.model.TaskList;
 
 public class ListCommand implements Command {
 

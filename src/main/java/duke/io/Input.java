@@ -1,4 +1,4 @@
-package com.chee.io;
+package duke.io;
 
 import java.util.Scanner;
 

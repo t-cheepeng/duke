@@ -1,4 +1,4 @@
-package com.chee.model;
+package duke.model;
 
 /**
  * Encapsulates a task inside Duke's system.

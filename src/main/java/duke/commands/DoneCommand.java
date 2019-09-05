@@ -1,7 +1,7 @@
-package com.chee.commands;
+package duke.commands;
 
-import com.chee.io.DukePrinter;
-import com.chee.model.TaskList;
+import duke.io.DukePrinter;
+import duke.model.TaskList;
 
 public class DoneCommand implements Command {
 

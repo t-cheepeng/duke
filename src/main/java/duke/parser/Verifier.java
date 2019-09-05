@@ -1,8 +1,8 @@
-package com.chee.parser;
+package duke.parser;
 
-import com.chee.error.MissingInformationException;
-import com.chee.error.UnknownCommandException;
-import com.chee.error.UnknownFormatException;
+import duke.exceptions.MissingInformationException;
+import duke.exceptions.UnknownCommandException;
+import duke.exceptions.UnknownFormatException;
 
 import java.text.DateFormat;
 import java.text.ParseException;

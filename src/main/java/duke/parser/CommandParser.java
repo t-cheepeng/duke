@@ -1,16 +1,10 @@
-package com.chee.parser;
+package duke.parser;
 
-import com.chee.commands.DoneCommand;
-import com.chee.commands.AddCommand;
-import com.chee.commands.Command;
-import com.chee.commands.DeleteCommand;
-import com.chee.commands.FindCommand;
-import com.chee.commands.ByeCommand;
-import com.chee.commands.ListCommand;
-import com.chee.error.MissingInformationException;
-import com.chee.error.UnknownCommandException;
-import com.chee.io.DukePrinter;
-import com.chee.model.TaskList;
+import duke.commands.*;
+import duke.exceptions.MissingInformationException;
+import duke.exceptions.UnknownCommandException;
+import duke.io.DukePrinter;
+import duke.model.TaskList;
 
 import java.text.ParseException;
 
@@ -81,8 +75,7 @@ public class CommandParser {
             break;
         case "deadline":
             String[] splitByFlag = command.split("/by");
-            result = new AddCommand(
-                    splitWhitesapce[0],
+            result = new AddDeadlineCommand(
                     taskList,
                     dukePrinter,
                     splitByFlag[0].substring(9).trim(),
@@ -90,16 +83,14 @@ public class CommandParser {
             break;
         case "event":
             splitByFlag = command.split("/at");
-            result = new AddCommand(
-                    splitWhitesapce[0],
+            result = new AddEventCommand(
                     taskList,
                     dukePrinter,
                     splitByFlag[0].substring(6).trim(),
                     splitByFlag[1].trim());
             break;
         case "todo":
-            result = new AddCommand(
-                    splitWhitesapce[0],
+            result = new AddToDoCommand(
                     taskList,
                     dukePrinter,
                     command.substring(4).trim());

@@ -1,9 +1,9 @@
-package com.chee.parser;
+package duke.parser;
 
-import com.chee.model.Deadline;
-import com.chee.model.Event;
-import com.chee.model.Task;
-import com.chee.model.ToDo;
+import duke.model.Deadline;
+import duke.model.Event;
+import duke.model.Task;
+import duke.model.ToDo;
 
 import java.text.DateFormat;
 import java.text.ParseException;

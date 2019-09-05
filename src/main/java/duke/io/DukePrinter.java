@@ -1,6 +1,6 @@
-package com.chee.io;
+package duke.io;
 
-import com.chee.model.Task;
+import duke.model.Task;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package com.chee.commands;
+package duke.commands;
 
-import com.chee.io.DukePrinter;
-import com.chee.model.Task;
-import com.chee.model.TaskList;
+import duke.io.DukePrinter;
+import duke.model.Task;
+import duke.model.TaskList;
 
 public class DeleteCommand implements Command {
 

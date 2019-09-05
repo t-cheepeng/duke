@@ -1,8 +1,8 @@
-package com.chee.io;
+package duke.io;
 
-import com.chee.error.CorruptDataException;
-import com.chee.parser.DataParser;
-import com.chee.model.Task;
+import duke.exceptions.CorruptDataException;
+import duke.parser.DataParser;
+import duke.model.Task;
 
 import java.io.BufferedReader;
 import java.io.File;

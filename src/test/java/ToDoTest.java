@@ -1,4 +1,4 @@
-import com.chee.model.ToDo;
+import duke.model.ToDo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

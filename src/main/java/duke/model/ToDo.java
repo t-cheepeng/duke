@@ -1,4 +1,4 @@
-package com.chee.model;
+package duke.model;
 
 public class ToDo extends Task {
 

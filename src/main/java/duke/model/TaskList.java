@@ -1,4 +1,4 @@
-package com.chee.model;
+package duke.model;
 
 import java.util.List;
 

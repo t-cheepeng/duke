@@ -1,10 +1,10 @@
-import com.chee.commands.ByeCommand;
-import com.chee.commands.Command;
-import com.chee.error.*;
-import com.chee.model.TaskList;
-import com.chee.parser.CommandParser;
-import com.chee.io.DukePrinter;
-import com.chee.io.IoUtils;
+import duke.commands.ByeCommand;
+import duke.commands.Command;
+import duke.exceptions.*;
+import duke.model.TaskList;
+import duke.parser.CommandParser;
+import duke.io.DukePrinter;
+import duke.io.IoUtils;
 
 import java.text.ParseException;
 
