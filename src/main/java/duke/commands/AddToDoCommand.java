@@ -4,10 +4,10 @@ import duke.io.DukePrinter;
 import duke.model.TaskList;
 import duke.model.ToDo;
 
-public class AddToDoCommand extends AddCommand {
+public class AddToDoCommand extends AbstractAddCommand {
 
     public AddToDoCommand(TaskList taskList, DukePrinter dukePrinter,
-                            String name) {
+                          String name) {
         super(taskList, dukePrinter);
         taskToAdd = new ToDo(name);
     }

@@ -2,14 +2,10 @@ package duke.commands;
 
 import duke.io.DukePrinter;
 
-public class ByeCommand implements Command {
-
-    private DukePrinter dukePrinter;
+public class ByeCommand extends AbstractCommand {
 
     public ByeCommand(DukePrinter dukePrinter) {
-        assert dukePrinter != null;
-
-        this.dukePrinter = dukePrinter;
+        super(dukePrinter);
     }
 
     /**

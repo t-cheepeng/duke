@@ -1,9 +1,7 @@
 package duke.parser;
 
-import duke.model.Deadline;
-import duke.model.Event;
-import duke.model.Task;
-import duke.model.ToDo;
+import duke.asserts.Asserter;
+import duke.model.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,7 +9,7 @@ import java.text.SimpleDateFormat;
 
 public class DataParser {
 
-    private DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
+    private DateFormat inputFormat = Dates.inputFormat;
 
     /**
      * Parse a string into a Task.
@@ -22,8 +20,12 @@ public class DataParser {
      * @see Task
      */
     public Task parseTask(String line) throws ParseException {
-        assert line != null;
+        Asserter.assertNonNullString(line);
+        return parseValidDataLine(line);
 
+    }
+
+    private Task parseValidDataLine(String line) throws ParseException {
         String[] splitByCommas = line.split(",");
         Task parsed = null;
         switch (splitByCommas[0]) {

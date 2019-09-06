@@ -16,7 +16,7 @@ public class Duke {
     private IoUtils io;
 
     /**
-     * Creates the interactive chatbot Duke.
+     * Creates the interactive chat bot Duke.
      */
     public Duke() {
         io = new IoUtils();
@@ -37,7 +37,7 @@ public class Duke {
      * @return Duke's response as a string
      */
     public String getResponse(String input) {
-        Command command = null;
+        Command command;
         try {
             command = parser.parse(input);
             if (command instanceof ByeCommand) {

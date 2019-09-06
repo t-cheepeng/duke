@@ -1,14 +1,14 @@
 package duke.commands;
 
+import duke.asserts.Asserter;
 import duke.io.DukePrinter;
 import duke.model.*;
 
 import java.text.ParseException;
 
-public abstract class AddCommand implements Command {
+public abstract class AbstractAddCommand extends AbstractCommand {
 
-    private TaskList taskList;
-    private DukePrinter dukePrinter;
+    TaskList taskList;
     Task taskToAdd;
 
     /**
@@ -16,15 +16,13 @@ public abstract class AddCommand implements Command {
      *
      * @param taskList    The list to ask task to
      * @param dukePrinter User output
-     * @throws ParseException If {@code extras} are not parceable.
      */
-    public AddCommand(TaskList taskList,
-                      DukePrinter dukePrinter) {
-        assert taskList != null;
-        assert dukePrinter != null;
+    public AbstractAddCommand(TaskList taskList,
+                              DukePrinter dukePrinter) {
+        super(dukePrinter);
+        Asserter.assertNonNullTaskList(taskList);
 
         this.taskList = taskList;
-        this.dukePrinter = dukePrinter;
     }
 
     /**

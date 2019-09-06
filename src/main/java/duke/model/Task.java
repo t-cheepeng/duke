@@ -13,6 +13,7 @@ package duke.model;
  * @see ToDo Event Deadline
  */
 public abstract class Task {
+
     String description;
     boolean isDone;
 
@@ -23,14 +24,6 @@ public abstract class Task {
 
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isDone() {
-        return isDone;
     }
 
     public void setDone(boolean done) {

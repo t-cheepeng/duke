@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.asserts.Asserter;
 import duke.io.DukePrinter;
 import duke.model.Task;
 import duke.model.TaskList;
@@ -7,11 +8,10 @@ import duke.model.TaskList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindCommand implements Command {
+public class FindCommand extends AbstractCommand {
 
     private String searchTerm;
     private TaskList taskList;
-    private DukePrinter dukePrinter;
 
     /**
      * Makes a command representing a find action.
@@ -22,12 +22,11 @@ public class FindCommand implements Command {
      */
     public FindCommand(String searchTerm, TaskList taskList,
         DukePrinter dukePrinter) {
-        assert taskList != null;
-        assert dukePrinter != null;
+        super(dukePrinter);
+        Asserter.assertNonNullTaskList(taskList);
 
         this.searchTerm = searchTerm;
         this.taskList = taskList;
-        this.dukePrinter = dukePrinter;
     }
 
     @Override

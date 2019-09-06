@@ -1,13 +1,13 @@
 package duke.commands;
 
+import duke.asserts.Asserter;
 import duke.io.DukePrinter;
 import duke.model.Task;
 import duke.model.TaskList;
 
-public class DeleteCommand implements Command {
+public class DeleteCommand extends AbstractCommand {
 
     private TaskList taskList;
-    private DukePrinter dukePrinter;
     private int toDelete;
 
     /**
@@ -18,12 +18,11 @@ public class DeleteCommand implements Command {
      * @param dukePrinter The response duke gives
      */
     public DeleteCommand(TaskList taskList, int toDelete, DukePrinter dukePrinter) {
-        assert taskList != null;
-        assert dukePrinter != null;
+        super(dukePrinter);
+        Asserter.assertNonNullTaskList(taskList);
 
         this.taskList = taskList;
         this.toDelete = toDelete;
-        this.dukePrinter = dukePrinter;
     }
 
     /**

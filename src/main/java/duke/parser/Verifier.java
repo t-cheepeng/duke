@@ -1,5 +1,6 @@
 package duke.parser;
 
+import duke.asserts.Asserter;
 import duke.exceptions.MissingInformationException;
 import duke.exceptions.UnknownCommandException;
 import duke.exceptions.UnknownFormatException;
@@ -30,7 +31,7 @@ public class Verifier {
      */
     public void verify(String command)
             throws UnknownCommandException, MissingInformationException {
-        assert command != null;
+        Asserter.assertNonNullString(command);
 
         this.command = command;
         split = command.split(" ");
