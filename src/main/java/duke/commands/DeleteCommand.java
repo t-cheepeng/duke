@@ -18,6 +18,9 @@ public class DeleteCommand implements Command {
      * @param dukePrinter The response duke gives
      */
     public DeleteCommand(TaskList taskList, int toDelete, DukePrinter dukePrinter) {
+        assert taskList != null;
+        assert dukePrinter != null;
+
         this.taskList = taskList;
         this.toDelete = toDelete;
         this.dukePrinter = dukePrinter;
