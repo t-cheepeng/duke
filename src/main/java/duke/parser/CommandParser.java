@@ -41,6 +41,9 @@ public class CommandParser {
      * @param dukePrinter Output of Duke
      */
     public CommandParser(TaskList taskList, DukePrinter dukePrinter) {
+        assert taskList != null;
+        assert dukePrinter != null;
+
         verifier = new Verifier();
         this.taskList = taskList;
         this.dukePrinter = dukePrinter;
@@ -57,6 +60,8 @@ public class CommandParser {
      */
     public Command parse(String command)
             throws UnknownCommandException, MissingInformationException, ParseException {
+        assert command != null;
+
         verifier.verify(command);
         String[] splitWhitesapce = command.split(" ");
         Command result = null;

@@ -18,6 +18,9 @@ public class DoneCommand implements Command {
      */
 
     public DoneCommand(TaskList taskList, int taskNum, DukePrinter dukePrinter) {
+        assert taskList != null;
+        assert dukePrinter != null;
+
         this.taskList = taskList;
         this.taskNum = taskNum;
         this.dukePrinter = dukePrinter;

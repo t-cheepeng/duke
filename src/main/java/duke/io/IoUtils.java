@@ -39,6 +39,8 @@ public class IoUtils {
      * @param taskList The list of task to save
      */
     public void writeTasks(List<Task> taskList) {
+        assert taskList != null;
+
         writer = getBufferedWriter();
         if (writer == null) {
             return;

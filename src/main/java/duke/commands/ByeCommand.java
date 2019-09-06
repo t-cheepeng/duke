@@ -7,6 +7,8 @@ public class ByeCommand implements Command {
     private DukePrinter dukePrinter;
 
     public ByeCommand(DukePrinter dukePrinter) {
+        assert dukePrinter != null;
+
         this.dukePrinter = dukePrinter;
     }
 

@@ -41,6 +41,9 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String l, Image iv) {
+        assert l != null;
+        assert iv != null;
+
         return new DialogBox(l, iv);
     }
 
@@ -51,6 +54,9 @@ public class DialogBox extends HBox {
      * @return a dialog box representing duke's reply.
      */
     public static DialogBox getDukeDialog(String l, Image iv) {
+        assert l != null;
+        assert iv != null;
+
         var db = new DialogBox(l, iv);
         db.flip();
         return db;

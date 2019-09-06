@@ -22,6 +22,9 @@ public class FindCommand implements Command {
      */
     public FindCommand(String searchTerm, TaskList taskList,
         DukePrinter dukePrinter) {
+        assert taskList != null;
+        assert dukePrinter != null;
+
         this.searchTerm = searchTerm;
         this.taskList = taskList;
         this.dukePrinter = dukePrinter;

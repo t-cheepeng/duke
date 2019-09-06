@@ -65,6 +65,8 @@ public class DukePrinter {
      * @param items The list of tasks to print
      */
     public void printList(List<Task> items) {
+        assertNonNullTaskList(items);
+
         StringBuilder message = new StringBuilder(LIST_MESSAGE);
         buildTaskListMessage(items, message);
         printWithSeparator(beautify(message.toString()));
@@ -75,6 +77,8 @@ public class DukePrinter {
      * @param doneItem The item that was marked as done
      */
     public void printDone(Task doneItem) {
+        assertNonNullTask(doneItem);
+
         StringBuilder builder = new StringBuilder(DONE_MESSAGE);
         builder.append("  ");
         builder.append(doneItem);
@@ -87,6 +91,9 @@ public class DukePrinter {
      * @param numOfTasks The number of tasks in the list
      */
     public void printAdd(Task addedTask, int numOfTasks) {
+        assertNonNullTask(addedTask);
+        assertNonNegativeNumber(numOfTasks);
+
         StringBuilder builder = new StringBuilder(ADD_MESSAGE);
         builder.append("  ");
         builder.append(addedTask);
@@ -101,6 +108,9 @@ public class DukePrinter {
      * @param numOfTask The number of tasks remaining in the list
      */
     public void printDelete(Task deletedTask, int numOfTask) {
+        assertNonNullTask(deletedTask);
+        assertNonNegativeNumber(numOfTask);
+
         StringBuilder builder = new StringBuilder(DELETE_MESSAGE);
         builder.append("  ");
         builder.append(deletedTask);
@@ -122,6 +132,8 @@ public class DukePrinter {
      * @param found The list of tasks matching user's search term
      */
     public void printFind(List<Task> found) {
+        assertNonNullTaskList(found);
+
         StringBuilder builder = new StringBuilder(FIND_MESSAGE);
         buildTaskListMessage(found, builder);
         printWithSeparator(beautify(builder.toString()));
@@ -132,6 +144,8 @@ public class DukePrinter {
      * @return Latest response duke had to the user.
      */
     public String getLatestCommandResponse() {
+        assert latestPrintedMessage != null;
+
         return latestPrintedMessage;
     }
 
@@ -147,6 +161,8 @@ public class DukePrinter {
     }
 
     private void buildTaskListMessage(List<Task> items, StringBuilder message) {
+        assertNonNullTaskList(items);
+
         for (int i = 0; i < items.size(); i++) {
             Task task = items.get(i);
             message.append(i + 1);
@@ -154,5 +170,17 @@ public class DukePrinter {
             message.append(task);
             message.append("\n");
         }
+    }
+
+    private void assertNonNegativeNumber(int numOfTasks) {
+        assert numOfTasks >= 0;
+    }
+
+    private void assertNonNullTaskList(List<Task> taskList) {
+        assert taskList != null;
+    }
+
+    private void assertNonNullTask(Task task) {
+        assert task != null;
     }
 }

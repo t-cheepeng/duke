@@ -22,6 +22,8 @@ public class DataParser {
      * @see Task
      */
     public Task parseTask(String line) throws ParseException {
+        assert line != null;
+
         String[] splitByCommas = line.split(",");
         Task parsed = null;
         switch (splitByCommas[0]) {

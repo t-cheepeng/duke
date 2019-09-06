@@ -20,6 +20,9 @@ public abstract class AddCommand implements Command {
      */
     public AddCommand(TaskList taskList,
                       DukePrinter dukePrinter) {
+        assert taskList != null;
+        assert dukePrinter != null;
+
         this.taskList = taskList;
         this.dukePrinter = dukePrinter;
     }

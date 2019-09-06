@@ -9,6 +9,9 @@ public class ListCommand implements Command {
     private DukePrinter dukePrinter;
 
     public ListCommand(TaskList taskList, DukePrinter dukePrinter) {
+        assert taskList != null;
+        assert dukePrinter != null;
+
         this.taskList = taskList;
         this.dukePrinter = dukePrinter;
     }

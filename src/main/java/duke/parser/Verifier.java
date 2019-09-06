@@ -30,6 +30,8 @@ public class Verifier {
      */
     public void verify(String command)
             throws UnknownCommandException, MissingInformationException {
+        assert command != null;
+
         this.command = command;
         split = command.split(" ");
         if (!isKnownCommand(split[0])) {
