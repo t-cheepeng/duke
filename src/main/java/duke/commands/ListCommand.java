@@ -1,19 +1,18 @@
 package duke.commands;
 
+import duke.asserts.Asserter;
 import duke.io.DukePrinter;
 import duke.model.TaskList;
 
-public class ListCommand implements Command {
+public class ListCommand extends AbstractCommand {
 
     private TaskList taskList;
-    private DukePrinter dukePrinter;
 
     public ListCommand(TaskList taskList, DukePrinter dukePrinter) {
-        assert taskList != null;
-        assert dukePrinter != null;
+        super(dukePrinter);
+        Asserter.assertNonNullTaskList(taskList);
 
         this.taskList = taskList;
-        this.dukePrinter = dukePrinter;
     }
 
     /**

@@ -8,8 +8,6 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private Duke duke;
-
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -17,8 +15,8 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             primaryStage.setScene(scene);
-            MainWindow window = fxmlLoader.<MainWindow>getController();
-            duke = new Duke();
+            MainWindow window = fxmlLoader.getController();
+            Duke duke = new Duke();
             window.setDuke(duke);
             window.welcome();
             primaryStage.show();

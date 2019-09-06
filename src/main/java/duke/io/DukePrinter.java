@@ -1,5 +1,6 @@
 package duke.io;
 
+import duke.asserts.Asserter;
 import duke.model.Task;
 
 import java.util.List;
@@ -65,7 +66,7 @@ public class DukePrinter {
      * @param items The list of tasks to print
      */
     public void printList(List<Task> items) {
-        assertNonNullTaskList(items);
+        Asserter.assertNonNullList(items);
 
         StringBuilder message = new StringBuilder(LIST_MESSAGE);
         buildTaskListMessage(items, message);
@@ -77,12 +78,12 @@ public class DukePrinter {
      * @param doneItem The item that was marked as done
      */
     public void printDone(Task doneItem) {
-        assertNonNullTask(doneItem);
+        Asserter.assertNonNullTask(doneItem);
 
-        StringBuilder builder = new StringBuilder(DONE_MESSAGE);
-        builder.append("  ");
-        builder.append(doneItem);
-        printWithSeparator(beautify(builder.toString()));
+        String builder = DONE_MESSAGE;
+        builder += "  ";
+        builder += doneItem;
+        printWithSeparator(beautify(builder));
     }
 
     /**
@@ -91,15 +92,7 @@ public class DukePrinter {
      * @param numOfTasks The number of tasks in the list
      */
     public void printAdd(Task addedTask, int numOfTasks) {
-        assertNonNullTask(addedTask);
-        assertNonNegativeNumber(numOfTasks);
-
-        StringBuilder builder = new StringBuilder(ADD_MESSAGE);
-        builder.append("  ");
-        builder.append(addedTask);
-        builder.append("\n");
-        builder.append(String.format(NUMBER_OF_TASK_MESSAGE, numOfTasks));
-        printWithSeparator(beautify(builder.toString()));
+        printTaskResponse(addedTask, numOfTasks, ADD_MESSAGE);
     }
 
     /**
@@ -108,15 +101,7 @@ public class DukePrinter {
      * @param numOfTask The number of tasks remaining in the list
      */
     public void printDelete(Task deletedTask, int numOfTask) {
-        assertNonNullTask(deletedTask);
-        assertNonNegativeNumber(numOfTask);
-
-        StringBuilder builder = new StringBuilder(DELETE_MESSAGE);
-        builder.append("  ");
-        builder.append(deletedTask);
-        builder.append("\n");
-        builder.append(String.format(NUMBER_OF_TASK_MESSAGE, numOfTask));
-        printWithSeparator(beautify(builder.toString()));
+        printTaskResponse(deletedTask, numOfTask, DELETE_MESSAGE);
     }
 
     /**
@@ -132,7 +117,7 @@ public class DukePrinter {
      * @param found The list of tasks matching user's search term
      */
     public void printFind(List<Task> found) {
-        assertNonNullTaskList(found);
+        Asserter.assertNonNullList(found);
 
         StringBuilder builder = new StringBuilder(FIND_MESSAGE);
         buildTaskListMessage(found, builder);
@@ -144,7 +129,7 @@ public class DukePrinter {
      * @return Latest response duke had to the user.
      */
     public String getLatestCommandResponse() {
-        assert latestPrintedMessage != null;
+        Asserter.assertNonNullString(latestPrintedMessage);
 
         return latestPrintedMessage;
     }
@@ -161,7 +146,7 @@ public class DukePrinter {
     }
 
     private void buildTaskListMessage(List<Task> items, StringBuilder message) {
-        assertNonNullTaskList(items);
+        Asserter.assertNonNullList(items);
 
         for (int i = 0; i < items.size(); i++) {
             Task task = items.get(i);
@@ -172,15 +157,15 @@ public class DukePrinter {
         }
     }
 
-    private void assertNonNegativeNumber(int numOfTasks) {
-        assert numOfTasks >= 0;
-    }
+    private void printTaskResponse(Task deletedTask, int numOfTask, String deleteMessage) {
+        Asserter.assertNonNullTask(deletedTask);
+        Asserter.assertPositiveInteger(numOfTask);
 
-    private void assertNonNullTaskList(List<Task> taskList) {
-        assert taskList != null;
-    }
-
-    private void assertNonNullTask(Task task) {
-        assert task != null;
+        String message = deleteMessage;
+        message += "  ";
+        message += deletedTask;
+        message += "\n";
+        message += String.format(NUMBER_OF_TASK_MESSAGE, numOfTask);
+        printWithSeparator(beautify(message));
     }
 }

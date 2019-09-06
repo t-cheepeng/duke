@@ -1,5 +1,6 @@
 package duke.io;
 
+import duke.asserts.Asserter;
 import duke.exceptions.CorruptDataException;
 import duke.parser.DataParser;
 import duke.model.Task;
@@ -19,10 +20,9 @@ public class IoUtils {
 
     private static final String DUKE_DATA_DIR = System.getProperty("user.home") + File.separator + "data";
     private static final String DUKE_DATA_PATH = DUKE_DATA_DIR + File.separator + "duke.txt";
-    private static final String CORRUPT_DATA_MESSAGE = "uWu, your data seems to be corruped and is not readable";
+    private static final String CORRUPT_DATA_MESSAGE = "uWu, your data seems to be corrupted and is not readable";
 
     private BufferedReader bufferedReader;
-    private Writer writer;
 
     /**
      * Represents IO operations for Duke.
@@ -39,20 +39,14 @@ public class IoUtils {
      * @param taskList The list of task to save
      */
     public void writeTasks(List<Task> taskList) {
-        assert taskList != null;
+        Asserter.assertNonNullList(taskList);
 
-        writer = getBufferedWriter();
-        if (writer == null) {
+        Writer writer = getBufferedWriter();
+        if (!doesWriterExist(writer)) {
             return;
         }
-        try {
-            for (Task task : taskList) {
-                writer.write(task.getSaveString() + "\n");
-            }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        writeToFile(writer, taskList);
+
     }
 
     /**
@@ -60,11 +54,16 @@ public class IoUtils {
      * @return The list of tasks read from storage
      */
     public List<Task> readTasks() throws CorruptDataException {
-        DataParser dataParser = new DataParser();
         List<Task> storedData = new ArrayList<>();
-        if (bufferedReader == null) {
+        if (!doesReaderExist()) {
             return storedData;
         }
+        return readFromFile(storedData);
+
+    }
+
+    private List<Task> readFromFile(List<Task> storedData) {
+        DataParser dataParser = new DataParser();
         try {
             String line = bufferedReader.readLine();
             while (line != null) {
@@ -82,16 +81,8 @@ public class IoUtils {
         return storedData;
     }
 
-    /**
-     * Closes all underlying IO streams.
-     */
-    public void close() {
-        try {
-            bufferedReader.close();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private boolean doesReaderExist() {
+        return bufferedReader != null;
     }
 
     private static boolean doesStorageExist() {
@@ -126,4 +117,20 @@ public class IoUtils {
             return null;
         }
     }
+
+    private void writeToFile(Writer writer, List<Task> taskList) {
+        try {
+            for (Task task : taskList) {
+                writer.write(task.getSaveString() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean doesWriterExist(Writer writer) {
+        return writer != null;
+    }
+
 }

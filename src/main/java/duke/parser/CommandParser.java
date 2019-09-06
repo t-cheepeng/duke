@@ -1,5 +1,6 @@
 package duke.parser;
 
+import duke.asserts.Asserter;
 import duke.commands.*;
 import duke.exceptions.MissingInformationException;
 import duke.exceptions.UnknownCommandException;
@@ -60,12 +61,15 @@ public class CommandParser {
      */
     public Command parse(String command)
             throws UnknownCommandException, MissingInformationException, ParseException {
-        assert command != null;
-
+        Asserter.assertNonNullString(command);
         verifier.verify(command);
-        String[] splitWhitesapce = command.split(" ");
+        return parseValidCommandString(command);
+    }
+
+    private Command parseValidCommandString(String command) throws ParseException {
         Command result = null;
-        switch (splitWhitesapce[0]) {
+        String[] splitWhitespace = command.split(" ");
+        switch (splitWhitespace[0]) {
         case "bye":
             result = new ByeCommand(dukePrinter);
             break;
@@ -75,7 +79,7 @@ public class CommandParser {
         case "done":
             result = new DoneCommand(
                     taskList,
-                    Integer.parseInt(splitWhitesapce[1]),
+                    Integer.parseInt(splitWhitespace[1]),
                     dukePrinter);
             break;
         case "deadline":
@@ -103,7 +107,7 @@ public class CommandParser {
         case "delete":
             result = new DeleteCommand(
                     taskList,
-                    Integer.parseInt(splitWhitesapce[1]),
+                    Integer.parseInt(splitWhitespace[1]),
                     dukePrinter);
             break;
         case "find":

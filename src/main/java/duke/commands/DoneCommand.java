@@ -1,13 +1,13 @@
 package duke.commands;
 
+import duke.asserts.Asserter;
 import duke.io.DukePrinter;
 import duke.model.TaskList;
 
-public class DoneCommand implements Command {
+public class DoneCommand extends AbstractCommand {
 
     private TaskList taskList;
     private int taskNum;
-    private DukePrinter dukePrinter;
 
     /**
      * Makes a command representing a done action.
@@ -18,12 +18,11 @@ public class DoneCommand implements Command {
      */
 
     public DoneCommand(TaskList taskList, int taskNum, DukePrinter dukePrinter) {
-        assert taskList != null;
-        assert dukePrinter != null;
+        super(dukePrinter);
+        Asserter.assertNonNullTaskList(taskList);
 
         this.taskList = taskList;
         this.taskNum = taskNum;
-        this.dukePrinter = dukePrinter;
     }
 
     /**
