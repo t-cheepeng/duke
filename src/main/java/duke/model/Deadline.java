@@ -15,12 +15,12 @@ public class Deadline extends Task {
     }
 
     public String toString() {
-        return "[D]" + "[" + getStatusIcon() + "] " + description
+        return "[D]" + "[" + getStatusIcon() + "] " + getTagStringForOutput() + description
                 + " (by: " + outputFormat.format(deadline) + ")";
     }
 
     @Override
     public String getSaveString() {
-        return "D," + isDone + "," + description + "," + inputFormat.format(deadline);
+        return "D," + isDone + "," + description + "," + inputFormat.format(deadline) + "," + tag;
     }
 }

@@ -15,12 +15,12 @@ public class Event extends Task {
     }
 
     public String toString() {
-        return "[E]" + "[" + getStatusIcon() + "] " + description
+        return "[E]" + "[" + getStatusIcon() + "] " + getTagStringForOutput() + description
                 + " (at: " + outputFormat.format(eventTime) + ")";
     }
 
     @Override
     public String getSaveString() {
-        return "E," + isDone + "," + description + "," + inputFormat.format(eventTime);
+        return "E," + isDone + "," + description + "," + inputFormat.format(eventTime) + "," + tag;
     }
 }

@@ -27,6 +27,8 @@ public class DukePrinter {
             "Noted. I've removed this task:\n";
     private static final String FIND_MESSAGE =
             "Here are the matching tasks in your list:\n";
+    private static final String TAG_MESSAGE =
+            "Noted. I've tagged task %d as %s\n";
     private static final String BYE_MESSAGE =
             SEPARATOR_LINE
                     + "\n     Bye. Hope to see you again soon!\n"
@@ -122,6 +124,20 @@ public class DukePrinter {
         StringBuilder builder = new StringBuilder(FIND_MESSAGE);
         buildTaskListMessage(found, builder);
         printWithSeparator(beautify(builder.toString()));
+    }
+
+    /**
+     * Prints duke's response to a valid tag action.
+     * @param task The task that was tagged
+     */
+    public void printTag(int taskNum, Task task) {
+        Asserter.assertNonNullTask(task);
+        Asserter.assertPositiveInteger(taskNum);
+
+        String builder = String.format(TAG_MESSAGE, taskNum, task.getTag());
+        builder += "  ";
+        builder += task;
+        printWithSeparator(beautify(builder));
     }
 
     /**

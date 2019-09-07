@@ -57,6 +57,9 @@ public class Verifier {
         case "find":
             checkForFind();
             break;
+        case "tag":
+            checkForTag();
+            break;
         default:
             break;
         }
@@ -70,7 +73,8 @@ public class Verifier {
                 || firstWord.equals("done")
                 || firstWord.equals("bye")
                 || firstWord.equals("delete")
-                || firstWord.equals("find");
+                || firstWord.equals("find")
+                || firstWord.equals("tag");
     }
 
     private void checkForTodo() {
@@ -135,6 +139,20 @@ public class Verifier {
         }
     }
 
+    private void checkForTag() {
+        checkForFlagExistence("as", "/as");
+        String[] splitByFlag = command.split("/as");
+        if (splitByFlag.length < 2 || splitByFlag[1].trim().equals("")) {
+            throw new MissingInformationException(
+                    String.format(MISSING_INFO_ERROR_MESSAGE, "as", split[0]));
+        }
+        if (splitByFlag[0].substring(3).trim().equals("")) {
+            throw new MissingInformationException(
+                    String.format(MISSING_INFO_ERROR_MESSAGE, "number", split[0]));
+        }
+        checkForValidNumber();
+    }
+
     private void checkForFlagExistence(String infoMissing, String flag) {
         if (!command.contains(flag)) {
             throw new MissingInformationException(
@@ -147,6 +165,10 @@ public class Verifier {
             throw new MissingInformationException(
                     String.format(MISSING_INFO_ERROR_MESSAGE, "number", split[0]));
         }
+        checkForValidNumber();
+    }
+
+    private void checkForValidNumber() {
         try {
             Integer.parseInt(split[1]);
         } catch (NumberFormatException e) {
@@ -154,5 +176,4 @@ public class Verifier {
                     String.format(UNKNOWN_FORMAT_MESSAGE, split[0]));
         }
     }
-
 }

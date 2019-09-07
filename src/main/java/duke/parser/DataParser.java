@@ -35,14 +35,17 @@ public class DataParser {
         case "E":
             parsed = new Event(splitByCommas[2], inputFormat.parse(splitByCommas[3]));
             parsed.setDone(Boolean.parseBoolean(splitByCommas[1]));
+            parsed.setTag(splitByCommas.length >= 5 ? splitByCommas[4] : "");
             break;
         case "D":
             parsed = new Deadline(splitByCommas[2], inputFormat.parse(splitByCommas[3]));
             parsed.setDone(Boolean.parseBoolean(splitByCommas[1]));
+            parsed.setTag(splitByCommas.length >= 5 ? splitByCommas[4] : "");
             break;
         case "T":
             parsed = new ToDo(splitByCommas[2]);
             parsed.setDone(Boolean.parseBoolean(splitByCommas[1]));
+            parsed.setTag(splitByCommas.length >= 4 ? splitByCommas[3] : "");
             break;
         default:
             break;

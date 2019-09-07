@@ -9,7 +9,7 @@ public class ToDoTest {
 
     @Test
     public void getSaveString_emptyDescription_correctSaveString() {
-        assertEquals("T,false,", emptyTodo.getSaveString());
+        assertEquals("T,false,,", emptyTodo.getSaveString());
     }
 
     @Test

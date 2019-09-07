@@ -8,10 +8,10 @@ public class ToDo extends Task {
 
     @Override
     public String getSaveString() {
-        return "T," + isDone + "," + description;
+        return "T," + isDone + "," + description + "," + tag;
     }
 
     public String toString() {
-        return "[T]" + "[" + getStatusIcon() + "] " + description;
+        return "[T]" + "[" + getStatusIcon() + "] " + getTagStringForOutput() + description;
     }
 }

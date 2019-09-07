@@ -1,15 +1,16 @@
 package duke.parser;
 
 import duke.asserts.Asserter;
+import duke.commands.AddToDoCommand;
 import duke.commands.AddDeadlineCommand;
+import duke.commands.AddEventCommand;
+import duke.commands.TagCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.DoneCommand;
 import duke.commands.ByeCommand;
+import duke.commands.FindCommand;
 import duke.commands.Command;
 import duke.commands.ListCommand;
-import duke.commands.DoneCommand;
-import duke.commands.FindCommand;
-import duke.commands.AddEventCommand;
-import duke.commands.AddToDoCommand;
-import duke.commands.DeleteCommand;
 import duke.exceptions.MissingInformationException;
 import duke.exceptions.UnknownCommandException;
 import duke.io.DukePrinter;
@@ -123,6 +124,14 @@ public class CommandParser {
                     command.substring(5),
                     taskList,
                     dukePrinter);
+            break;
+        case "tag":
+            splitByFlag = command.split("/as");
+            result = new TagCommand(
+                    taskList,
+                    dukePrinter,
+                    Integer.parseInt(splitWhitespace[1]),
+                    splitByFlag[1].trim());
             break;
         default:
             break;

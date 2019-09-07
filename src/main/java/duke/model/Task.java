@@ -15,11 +15,17 @@ package duke.model;
 public abstract class Task {
 
     String description;
+    String tag;
     boolean isDone;
 
+    /**
+     * Constructs a task with the given description.
+     * @param description The description of the task
+     */
     public Task(String description) {
         this.description = description;
         isDone = false;
+        tag = "";
     }
 
     public String getDescription() {
@@ -31,8 +37,21 @@ public abstract class Task {
     }
 
     String getStatusIcon() {
-        return (isDone ? "✓" : "✗");
+        return (isDone ? "🗸" : "✗");
     }
+
+    String getTagStringForOutput() {
+        return tag.equals("") ? "" : "[#" + tag + "] ";
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
 
     /**
      * Returns a string in format that is to be saved locally.
