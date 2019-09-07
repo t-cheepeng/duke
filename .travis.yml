@@ -11,6 +11,3 @@ cache:
 
 jdk:
   -oraclejdk11
-
-./gradlew assemble
-./gradlew check
