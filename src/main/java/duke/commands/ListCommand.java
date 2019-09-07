@@ -8,6 +8,11 @@ public class ListCommand extends AbstractCommand {
 
     private TaskList taskList;
 
+    /**
+     * Constructs a command representing a output of list.
+     * @param taskList The list of task
+     * @param dukePrinter The output of duke
+     */
     public ListCommand(TaskList taskList, DukePrinter dukePrinter) {
         super(dukePrinter);
         Asserter.assertNonNullTaskList(taskList);

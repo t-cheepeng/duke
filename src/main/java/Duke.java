@@ -1,6 +1,10 @@
 import duke.commands.ByeCommand;
 import duke.commands.Command;
-import duke.exceptions.*;
+import duke.exceptions.CorruptDataException;
+import duke.exceptions.UnableToStartDukeException;
+import duke.exceptions.UnknownCommandException;
+import duke.exceptions.MissingInformationException;
+import duke.exceptions.UnknownFormatException;
 import duke.model.TaskList;
 import duke.parser.CommandParser;
 import duke.io.DukePrinter;

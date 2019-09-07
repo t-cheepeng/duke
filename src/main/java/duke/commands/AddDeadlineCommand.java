@@ -10,6 +10,15 @@ import java.text.SimpleDateFormat;
 
 public class AddDeadlineCommand extends AbstractAddCommand {
 
+    /**
+     * Constructs a command representing a deadline.
+     *
+     * @param taskList The list of tasks
+     * @param dukePrinter The output of Duke
+     * @param name Name of the task
+     * @param date Deadline of the task
+     * @throws ParseException when date is unable to be formatted
+     */
     public AddDeadlineCommand(TaskList taskList, DukePrinter dukePrinter,
                               String name, String date)
             throws ParseException {

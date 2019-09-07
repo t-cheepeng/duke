@@ -1,11 +1,14 @@
 package duke.parser;
 
 import duke.asserts.Asserter;
-import duke.model.*;
+import duke.model.Dates;
+import duke.model.Deadline;
+import duke.model.Event;
+import duke.model.Task;
+import duke.model.ToDo;
 
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class DataParser {
 

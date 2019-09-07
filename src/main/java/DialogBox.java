@@ -40,6 +40,13 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Gets a user dialog for a string and image.
+     *
+     * @param l Text to display
+     * @param iv Image to display
+     * @return A dialog box with text and image
+     */
     public static DialogBox getUserDialog(String l, Image iv) {
         assert l != null;
         assert iv != null;

@@ -14,6 +14,6 @@ public class ToDoTest {
 
     @Test
     public void toString_emptyDescription_correctString() {
-        assertEquals("[T][\u2718] ", emptyTodo.toString());
+        assertEquals("[T][✗] ", emptyTodo.toString());
     }
 }

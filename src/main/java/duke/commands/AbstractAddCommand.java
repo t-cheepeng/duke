@@ -2,9 +2,8 @@ package duke.commands;
 
 import duke.asserts.Asserter;
 import duke.io.DukePrinter;
-import duke.model.*;
-
-import java.text.ParseException;
+import duke.model.Task;
+import duke.model.TaskList;
 
 public abstract class AbstractAddCommand extends AbstractCommand {
 
