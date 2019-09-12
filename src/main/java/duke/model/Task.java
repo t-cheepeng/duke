@@ -37,7 +37,7 @@ public abstract class Task {
     }
 
     String getStatusIcon() {
-        return (isDone ? "🗸" : "✗");
+        return (isDone ? "\u2713" : "\u2717"); //✓ and X
     }
 
     String getTagStringForOutput() {

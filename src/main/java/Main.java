@@ -19,6 +19,7 @@ public class Main extends Application {
             Duke duke = new Duke();
             window.setDuke(duke);
             window.welcome();
+            primaryStage.setTitle("Duke");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
